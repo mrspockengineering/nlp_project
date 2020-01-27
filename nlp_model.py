@@ -12,6 +12,11 @@ nltk.corpus.gutenberg
 
 word_tokenize():    zerlegen in word-list
 
+libraries:
+- nltk
+- pandas
+- sklearn
+
 @author: markus
 '''
 import os
