@@ -1,8 +1,6 @@
 '''
 Created on 21.01.2020
 
-https://www.youtube.com/watch?v=05ONoGfmKvA&t=1s
-
 Doku NLTK:
 https://www.nltk.org/api/nltk.corpus.html
 http://www.nltk.org/nltk_data/
@@ -30,35 +28,57 @@ import time
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
-print(os.listdir(nltk.data.find("corpora")))
+print(os.listdir(nltk.data.find("corpora"))) #------- ['stopwords', 'sentence_polarity', ..]
 
 from nltk.corpus import movie_reviews
-print(movie_reviews.categories())
+print(movie_reviews.categories()) # ---['neg', 'pos']
 
-print(len(movie_reviews.fileids('pos')))
-print(' ')
+# fileIDs pos
+print(' fileIds pos')
+print("len : ", len(movie_reviews.fileids('pos'))) # 1000
 print(movie_reviews.fileids('pos'))
+eingabe = input('Warten')
 
-neg_rev = movie_reviews.fileids('neg')
-print(neg_rev)
-rev = nltk.corpus.movie_reviews.words('pos/cv000_29590.txt')
-print(rev)
+# fileIDs neg/pos    / words(pos)
+neg_rev = movie_reviews.fileids('neg')          
+print('neg_rev: ', neg_rev)
+rev = movie_reviews.fileids('pos')
+print('rev: ', rev)
+rev = nltk.corpus.movie_reviews.words('pos/cv000_29590.txt')  # ?
+print("rev: ", rev, "len(rev): ", len(rev))
+eingabe = input('Warten')
 
+# corpora_words
 rev_list = []
+# for testing
 for rev in neg_rev:
-    rev_text_neg = rev = nltk.corpus.movie_reviews.words(rev)
+    review_one_stringt = " ".join(rev)
+with open ("Ausgabe1.txt", "w") as ausgabe1:
+    ausgabe1.write("Review One String\n" + str(review_one_stringt))
+    ausgabe1.write(str(rev_list)+"\n\n\n")
+
+
+for rev in neg_rev:
+    rev_text_neg = rev = movie_reviews.words(rev)
     review_one_string = " ".join(rev_text_neg)
     review_one_string = review_one_string.replace(' ,', ',')
     review_one_string = review_one_string.replace(' .','.')
-    review_one_string = review_one_string.replace("\' ", "'")
-    review_one_string = review_one_string.replace(" \'", "'")
+#    review_one_string = review_one_string.replace("\' ", "'")
+#    review_one_string = review_one_string.replace(" \'", "'")
     rev_list.append(review_one_string)
-print(len(rev_list))
+# print("rev_list", rev_list)
+with open ("Ausgabe1.txt", "a") as ausgabe1:
+    ausgabe1.write("Review One String2\n")
+    ausgabe1.write(str(rev_list))
+    
+print("len rev_list :", len(rev_list))
+eingabe = input('Warten1')
+
 
 neg_rev = movie_reviews.fileids('neg')
 print(neg_rev)
 rev = nltk.corpus.movie_reviews.words('pos/cv000_29590.txt')
-print(rev)
+print("rev: ", rev)
 print(len(rev_list))
 
 pos_rev = movie_reviews.fileids('pos')
@@ -70,7 +90,8 @@ for rev_pos in pos_rev:
     review_one_string = review_one_string.replace("\' ", "'")
     review_one_string = review_one_string.replace(" \'", "'")
     rev_list.append(review_one_string)
-print(len(rev_list))
+print("len rev_list: ", len(rev_list))
+eingabe = input("warten2")
 
 neg_targets = np.zeros((1000,), dtype=np.int)
 pos_targets = np.ones((1000,), dtype = np.int)

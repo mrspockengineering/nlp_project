@@ -1,8 +1,6 @@
 '''
 Created on 21.01.2020
 
-https://www.youtube.com/watch?v=05ONoGfmKvA&t=1s
-
 Doku NLTK:
 https://www.nltk.org/api/nltk.corpus.html
 http://www.nltk.org/nltk_data/
